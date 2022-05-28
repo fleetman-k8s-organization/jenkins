@@ -86,7 +86,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: myjenkins:latest
+          image: jenkins/jenkins:lts
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
@@ -97,7 +97,8 @@ spec:
               containerPort: 50000
           volumeMounts:
             - name: jenkins-home
-              mountPath: /var/jenkins_home
+              mountPath: /var
+              subPath: jenkins_home
             - name: docker-sock-volume
               mountPath: "/var/run/docker.sock"
           imagePullPolicy: Never
